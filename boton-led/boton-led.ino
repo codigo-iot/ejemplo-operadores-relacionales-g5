@@ -33,7 +33,7 @@ void setup() {// Inicio de void setup ()
 void loop() {// Inicio de void loop
   // put your main code here, to run repeatedly:
   dato = digitalRead (BOTON); //Leer el pin del boton
-  digitalWrite (LED, dato); //Prender o apagar el led
+  digitalWrite (LED, !dato); //Prender o apagar el led
   Serial.println (dato);
   delay (200);
 
