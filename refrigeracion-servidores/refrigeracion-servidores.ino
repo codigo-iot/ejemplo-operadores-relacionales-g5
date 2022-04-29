@@ -50,6 +50,7 @@ const int TEMP_H = 28;
 int boton1_dato;
 int boton2_dato;
 int boton3_dato;
+float t;
 
 // Definición de objetos
 DHT dht(DHTPIN, DHTTYPE);
@@ -89,7 +90,7 @@ void loop() {// Inicio de void loop
 void lecturaDHT () {
   //*******Lectura del sensor*********
   // Read temperature as Celsius (the default)
-  float t = dht.readTemperature();
+  t = dht.readTemperature();
    // Check if any reads failed and exit early (to try again).
   if (isnan(t)) {
     Serial.println(F("Failed to read from DHT sensor!"));
