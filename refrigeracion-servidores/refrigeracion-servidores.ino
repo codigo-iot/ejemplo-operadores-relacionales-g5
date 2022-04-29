@@ -77,6 +77,16 @@ void loop() {// Inicio de void loop
   // put your main code here, to run repeatedly:
   delay(2000);
 
+  lecturaDHT ();
+  lecturaBotones ();
+  logica ();
+
+}// Fin de void loop
+
+// Funcioes del usuario
+
+// Funcion de lectura del sensor DHT11
+void lecturaDHT () {
   //*******Lectura del sensor*********
   // Read temperature as Celsius (the default)
   float t = dht.readTemperature();
@@ -86,18 +96,26 @@ void loop() {// Inicio de void loop
     return;
   }
   Serial.println(t);
+}
 
-  //********Lectura del boton1********
+// Funcion de lectura de botones
+void lecturaBotones () {
+  //********Lectura de botones********
   boton1_dato = digitalRead (BOTON1);
+  boton2_dato = digitalRead (BOTON2);
+  boton3_dato = digitalRead (BOTON3);
+}
+
+// Funcion de logica
+void logica () {
+
+  //********Automático por temperatura, sobrecarga y alta demanda**********
   if (boton1_dato == 1) {
     digitalWrite (LED1, LOW);
   } else {
     digitalWrite (LED1, HIGH);
-  }
-
-  //********Automático por temperatura, sobrecarga y alta demanda**********
-  boton2_dato = digitalRead (BOTON2);
-  boton3_dato = digitalRead (BOTON3);
+  }  
+  
   if (t > TEMP_H || boton2_dato == 1 || boton3_dato == 1) {
     digitalWrite (LED2, HIGH);
   } else {
@@ -111,9 +129,4 @@ void loop() {// Inicio de void loop
    *  digitalWrite (LED2, LOW);
    *  }
    */
-
-  
-
-}// Fin de void loop
-
-// Funcioes del usuario
+}
